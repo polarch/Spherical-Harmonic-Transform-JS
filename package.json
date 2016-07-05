@@ -1,0 +1,32 @@
+{
+  "name": "spherical-harmonic-analysis",
+  "version": "0.1.0",
+  "description": "\"Routines for spherical harmonic transform and interpolation of spherical data\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify index.js --s sphereHarmonic > dist/spherical-harmonic-analysis.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/polarch/Spherical-Harmonic-Transform-JS.git"
+  },
+  "keywords": [
+    "spherical",
+    "transform",
+    "interpolation",
+    "rotation"
+  ],
+  "author": "Archontis Politis <archontis.politis@aalto.fi>",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/polarch/Spherical-Harmonic-Transform-JS/issues"
+  },
+  "homepage": "https://github.com/polarch/Spherical-Harmonic-Transform-JS#readme",
+  "dependencies": {
+    "numeric": "^1.2.6"
+  },
+  "devDependencies": {
+    "browserify": "^13.0.1"
+  }
+}
