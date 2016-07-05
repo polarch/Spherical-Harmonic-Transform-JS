@@ -4,7 +4,7 @@
 //  archontis.politis@aalto.fi
 ////////////////////////////////////////////////////////////////////
 //
-//  JSHlib a JavaScript library that implements
+//  A JavaScript library that implements 
 //  the spherical harmonic transform for real spherical harmonics
 //  and some useful transformations in the spherical harmonic domain
 //
@@ -12,6 +12,8 @@
 //  http://www.numericjs.com/
 //
 ////////////////////////////////////////////////////////////////////
+
+// import * as numeric from './numeric-1.2.6.min'
 
 var numeric = require('./node_modules/numeric/numeric-1.2.6.min.js');
 

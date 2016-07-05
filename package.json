@@ -1,11 +1,11 @@
 {
-  "name": "spherical-harmonic-analysis",
+  "name": "spherical-harmonic-transform",
   "version": "0.1.0",
   "description": "\"Routines for spherical harmonic transform and interpolation of spherical data\"",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify index.js --s sphereHarmonic > dist/spherical-harmonic-analysis.js"
+    "build": "browserify index.js --s sphereHarmonic > dist/spherical-harmonic-transform.js"
   },
   "repository": {
     "type": "git",

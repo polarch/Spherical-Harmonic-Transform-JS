@@ -3,7 +3,7 @@
 //  archontis.politis@aalto.fi
 ////////////////////////////////////////////////////////////////////
 //
-//  JSHlib a JavaScript library that implements
+//  A JavaScript library that implements 
 //  the spherical harmonic transform for real spherical harmonics
 //  and some useful transformations in the spherical harmonic domain
 //
