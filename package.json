@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify index.js --s sphereHarmonic > dist/spherical-harmonic-transform.js"
+    "build": "browserify index.js --s sht > dist/spherical-harmonic-transform.js"
   },
   "repository": {
     "type": "git",

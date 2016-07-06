@@ -14,10 +14,11 @@
 
 // import * as numeric from './numeric-1.2.6.min'
 
-var numeric = require('./node_modules/numeric/numeric-1.2.6.min.js');
+var numeric = require('./node_modules/numeric/numeric-1.2.6.min');
+
 
 // forwardSHT implements the forward SHT on data defined over the sphere
-module.exports.forwardSHT = function forwardSHT(N, data, CART_OR_SPH, DIRECT_OR_PINV) {
+var forwardSHT = function (N, data, CART_OR_SPH, DIRECT_OR_PINV) {
     
     var Ndirs = data.length, Nsh = (N+1)*(N+1);
     var invY_N;
@@ -29,7 +30,7 @@ module.exports.forwardSHT = function forwardSHT(N, data, CART_OR_SPH, DIRECT_OR_
     // Convert cartesian to spherical if needed
     if (CART_OR_SPH==0) data = convertCart2Sph(data);
     for (var  i=0; i<data.length; i++) {
-        mag[i] = data[i][0];
+        mag[i] = data[i][2];
     }
     // SH sampling matrix
     Y_N = computeRealSH(N, data);
@@ -46,7 +47,7 @@ module.exports.forwardSHT = function forwardSHT(N, data, CART_OR_SPH, DIRECT_OR_
 }
 
 // inverseSHT implements the inverse SHT from SH coefficients
-module.exports.inverseSHT = function inverseSHT(coeffs, aziElev) {
+var inverseSHT = function (coeffs, aziElev) {
     
     var aziElevR = aziElev;
     var N = Math.sqrt(coeffs.length)-1;
@@ -62,12 +63,12 @@ module.exports.inverseSHT = function inverseSHT(coeffs, aziElev) {
 }
 
 // xxxxxxxxxxxxxxxxxx
-module.exports.print2Darray = function print2Darray(array2D) {
+var print2Darray = function (array2D) {
     for (var q=0; q<array2D.length; q++) console.log(array2D[q]);
 }
 
 // convertCart2Sph converts arrays of cartesian vectors to spherical coordinates
-module.exports.convertCart2Sph = function convertCart2Sph(xyz, OMIT_MAG) {
+var convertCart2Sph = function (xyz, OMIT_MAG) {
     
     var azi, elev, r;
     var aziElevR = new Array(xyz.length);
@@ -87,7 +88,7 @@ module.exports.convertCart2Sph = function convertCart2Sph(xyz, OMIT_MAG) {
 }
 
 // convertSph2Cart converts arrays of spherical coordinates to cartesian
-module.exports.convertSph2Cart = function convertSph2Cart(aziElevR) {
+var convertSph2Cart = function (aziElevR) {
     
     var x,y,z;
     var xyz = new Array(aziElevR.length);
@@ -103,7 +104,7 @@ module.exports.convertSph2Cart = function convertSph2Cart(aziElevR) {
 }
 
 // computeRealSH computes real spherical harmonics up to order N
-module.exports.computeRealSH = function computeRealSH(N, data) {
+var computeRealSH = function (N, data) {
     
     var azi = new Array(data.length);
     var elev = new Array(data.length);
@@ -158,13 +159,13 @@ module.exports.computeRealSH = function computeRealSH(N, data) {
 }
 
 // factorial compute factorial
-module.exports.factorial = function factorial(n) {
+var factorial = function (n) {
     if (n === 0) return 1;
     return n * factorial(n - 1);
 }
 
 // recurseLegendrePoly computes associated Legendre functions recursively
-module.exports.recurseLegendrePoly = function recurseLegendrePoly(n, x, Pnm_minus1, Pnm_minus2) {
+var recurseLegendrePoly = function (n, x, Pnm_minus1, Pnm_minus2) {
     
     var Pnm = new Array(n+1);
     switch(n) {
@@ -216,7 +217,7 @@ module.exports.recurseLegendrePoly = function recurseLegendrePoly(n, x, Pnm_minu
 }
 
 // pinv_svd computes the pseudo-inverse using SVD
-module.exports.pinv_svd = function pinv_svd(A) {
+var pinv_svd = function (A) {
     var z = numeric.svd(A), foo = z.S[0];
     var U = z.U, S = z.S, V = z.V;
     var m = A.length, n = A[0].length, tol = Math.max(m,n)*numeric.epsilon*foo,M = S.length;
@@ -226,13 +227,13 @@ module.exports.pinv_svd = function pinv_svd(A) {
 }
 
 // pinv_direct computes the left pseudo-inverse
-module.exports.pinv_direct = function pinv_direct(A) {
+var pinv_direct = function (A) {
     var AT = numeric.transpose(A);
     return numeric.dot(numeric.inv(numeric.dot(AT,A)),AT);
 }
 
 // computes rotation matrices for real spherical harmonics
-module.exports.getSHrotMtx = function getSHrotMtx(Rxyz, L) {
+var getSHrotMtx = function (Rxyz, L) {
     
     var Nsh = (L+1)*(L+1);
     // allocate total rotation matrix
@@ -364,7 +365,7 @@ function P(i,l,a,b,R_1,R_lm1) {
 }
 
 // yawPitchRoll2Rzyx computes the rotation matrix from ZY'X'' rotation angles
-module.exports.yawPitchRoll2Rzyx = function yawPitchRoll2Rzyx(yaw, pitch, roll) {
+var yawPitchRoll2Rzyx = function (yaw, pitch, roll) {
     
     let Rx, Ry, Rz;
     if (roll == 0) Rx = [[1,0,0],[0,1,0],[0,0,1]];
@@ -378,3 +379,18 @@ module.exports.yawPitchRoll2Rzyx = function yawPitchRoll2Rzyx(yaw, pitch, roll) 
     R = numeric.dotMMsmall(Rx,R);
     return R;
 }
+
+
+// exports
+module.exports.forwardSHT = forwardSHT;
+module.exports.inverseSHT = inverseSHT;
+module.exports.print2Darray = print2Darray;
+module.exports.convertCart2Sph = convertCart2Sph;
+module.exports.convertSph2Cart = convertSph2Cart;
+module.exports.computeRealSH = computeRealSH;
+module.exports.factorial = factorial;
+module.exports.recurseLegendrePoly = recurseLegendrePoly;
+module.exports.pinv_svd = pinv_svd;
+module.exports.pinv_direct = pinv_direct;
+module.exports.getSHrotMtx = getSHrotMtx;
+module.exports.yawPitchRoll2Rzyx = yawPitchRoll2Rzyx;

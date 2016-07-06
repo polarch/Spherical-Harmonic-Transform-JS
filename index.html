@@ -1,12 +1,38 @@
 <!doctype html>
 <html>
     <head>
-        <title>Tests for library</title>
+        <meta charset="utf-8"/>
+        <title>Tests for SHT library</title>
     </head>
     <body>
-        <script src="dist/spherical-harmonic-tranform.js"></script>
+        <script src="dist/spherical-harmonic-transform.js"></script>
+        <script src="resources/sphMeshes.js"></script>
         <script>
             console.log('Tests: ');
+            console.log(sht);
+            
+            // get some dense uniform arrangement of points
+            var data_xyz = SPH_MESHES.GeodomeLowRes.vertex;
+            var nPoints = data_xyz.length;
+            var shtOrder = Math.floor(Math.sqrt(nPoints)-1);
+            
+            console.log("Direct forward SHT: number of points " + nPoints )
+            var spectrum = sht.forwardSHT(shtOrder, data_xyz, 0, 0);
+            console.log(spectrum);
+            
+            spectrum = sht.forwardSHT(shtOrder, data_xyz, 0, 1);
+            console.log(spectrum);
+            
+            var data_aziElevR = sht.convertCart2Sph(data_xyz,0);
+            spectrum = sht.forwardSHT(shtOrder, data_aziElevR, 1, 0);
+            console.log(spectrum);
+            
+            spectrum = sht.forwardSHT(shtOrder, data_aziElevR, 1, 1);
+            console.log(spectrum);
+            
+            
+            
+            
             </script>
     </body>
 </html>
