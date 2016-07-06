@@ -1,6 +1,6 @@
 {
   "name": "spherical-harmonic-transform",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Routines for spherical harmonic transform and interpolation of spherical data",
   "main": "src/index.js",
   "scripts": {
@@ -29,5 +29,9 @@
   "devDependencies": {
     "browserify": "^13.0.1"
   },
-  "files": [ "src", "bundle", "resources" ]
+  "files": [
+    "src",
+    "bundle",
+    "resources"
+  ]
 }
