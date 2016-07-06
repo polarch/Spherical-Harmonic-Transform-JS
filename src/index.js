@@ -12,9 +12,7 @@
 //
 ////////////////////////////////////////////////////////////////////
 
-// import * as numeric from './numeric-1.2.6.min'
-
-var numeric = require('./node_modules/numeric/numeric-1.2.6.min');
+var numeric = require('numeric');
 
 
 // forwardSHT implements the forward SHT on data defined over the sphere
@@ -367,7 +365,7 @@ function P(i,l,a,b,R_1,R_lm1) {
 // yawPitchRoll2Rzyx computes the rotation matrix from ZY'X'' rotation angles
 var yawPitchRoll2Rzyx = function (yaw, pitch, roll) {
     
-    let Rx, Ry, Rz;
+    var Rx, Ry, Rz;
     if (roll == 0) Rx = [[1,0,0],[0,1,0],[0,0,1]];
     else Rx = [[1, 0, 0], [0, Math.cos(roll), Math.sin(roll)], [0, -Math.sin(roll), Math.cos(roll)]];
     if (pitch == 0) Ry = [[1,0,0],[0,1,0],[0,0,1]];
@@ -375,7 +373,7 @@ var yawPitchRoll2Rzyx = function (yaw, pitch, roll) {
     if (yaw == 0) Rz = [[1,0,0],[0,1,0],[0,0,1]];
     else Rz = [[Math.cos(yaw), Math.sin(yaw), 0], [-Math.sin(yaw), Math.cos(yaw), 0], [0, 0, 1]];
     
-    let R = numeric.dotMMsmall(Ry,Rz);
+    var R = numeric.dotMMsmall(Ry,Rz);
     R = numeric.dotMMsmall(Rx,R);
     return R;
 }

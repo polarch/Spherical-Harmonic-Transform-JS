@@ -1,11 +1,11 @@
 {
   "name": "spherical-harmonic-transform",
   "version": "0.1.0",
-  "description": "\"Routines for spherical harmonic transform and interpolation of spherical data\"",
-  "main": "spherical-harmonic-transform.js",
+  "description": "Routines for spherical harmonic transform and interpolation of spherical data",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify index.js --s sht > spherical-harmonic-transform.js"
+    "bundle": "browserify src/index.js --s sht > bundle/spherical-harmonic-transform.js"
   },
   "repository": {
     "type": "git",
@@ -29,5 +29,5 @@
   "devDependencies": {
     "browserify": "^13.0.1"
   },
-  "files": [ "spherical-harmonic-transform.js" ]
+  "files": [ "src", "bundle", "resources" ]
 }

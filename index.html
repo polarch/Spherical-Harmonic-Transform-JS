@@ -5,14 +5,14 @@
         <title>Tests for SHT library</title>
     </head>
     <body>
-        <script src="spherical-harmonic-transform.js"></script>
-        <script src="resources/sphMeshes.js"></script>
+        <script src="bundle/spherical-harmonic-transform.js"></script>
+        <script src="resources/spherical-meshes.js"></script>
         <script>
             console.log('Tests: ');
             console.log(sht);
             
             // get some dense uniform arrangement of points
-            var data_xyz = SPH_MESHES.GeodomeLowRes.vertex;
+            var data_xyz = SPHERICAL_MESHES.GeodomeLowRes.vertex;
             var nPoints = data_xyz.length;
             var shtOrder = Math.floor(Math.sqrt(nPoints)-1);
             
